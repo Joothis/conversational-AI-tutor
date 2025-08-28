@@ -1,0 +1,13 @@
+Python is a high-level, interpreted, general-purpose programming language. Its design philosophy emphasizes code readability with the use of significant indentation.
+
+Python is dynamically-typed and garbage-collected. It supports multiple programming paradigms, including structured (particularly procedural), object-oriented and functional programming.
+
+Python was created in the late 1980s by Guido van Rossum.
+
+Variables in Python are created when you assign a value to it. For example, x = 5.
+
+Python has several data types, including integers, floats, strings, lists, tuples, and dictionaries.
+
+Lists are created using square brackets: my_list = [1, 2, 3].
+Tuples are created using parentheses: my_tuple = (1, 2, 3).
+Dictionaries are created using curly braces: my_dict = {"key": "value"}.
