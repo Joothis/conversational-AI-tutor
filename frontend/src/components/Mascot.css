@@ -1,0 +1,414 @@
+.mascot-container {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Emotion Aura */
+.emotion-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Status Indicators */
+.status-indicator {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.thinking-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.thinking-dots span {
+  width: 12px;
+  height: 12px;
+  background: #4facfe;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(79, 172, 254, 0.4);
+}
+
+.sound-waves {
+  display: flex;
+  gap: 4px;
+  align-items: end;
+}
+
+.wave {
+  width: 6px;
+  height: 30px;
+  background: linear-gradient(to top, #4facfe, #00f2fe);
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(79, 172, 254, 0.4);
+}
+
+/* Mascot Head */
+.mascot-head {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  border-radius: 50%;
+  position: relative;
+  border: 6px solid #fff;
+  box-shadow: 
+    0 15px 35px rgba(255, 107, 107, 0.3),
+    inset 0 5px 15px rgba(255, 255, 255, 0.2);
+  z-index: 2;
+  overflow: hidden;
+}
+
+.mascot-head::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Eyes */
+.eyes {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  z-index: 3;
+}
+
+.eye {
+  width: 35px;
+  height: 35px;
+  background: #fff;
+  border-radius: 50%;
+  position: relative;
+  border: 3px solid #333;
+  overflow: hidden;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.pupil {
+  width: 18px;
+  height: 18px;
+  background: radial-gradient(circle, #000 0%, #333 100%);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.pupil::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+/* Mouth */
+.mouth {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.static-mouth {
+  width: 50px;
+  height: 25px;
+  border: 4px solid #333;
+  border-top: none;
+  border-radius: 0 0 50px 50px;
+  background: #ff4757;
+  box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.speaking-mouth {
+  width: 60px;
+  height: 35px;
+  background: #333;
+  border-radius: 50%;
+  border: 3px solid #222;
+  box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Expression Overlay */
+.expression-overlay {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  font-size: 3rem;
+  z-index: 5;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Cheeks */
+.cheek {
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  position: absolute;
+  top: 85px;
+  z-index: 2;
+}
+
+.left-cheek {
+  left: 25px;
+}
+
+.right-cheek {
+  right: 25px;
+}
+
+/* Body */
+.mascot-body {
+  width: 140px;
+  height: 160px;
+  position: relative;
+  margin-top: -30px;
+  z-index: 1;
+}
+
+.body-shape {
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  border-radius: 60px 60px 90px 90px;
+  border: 4px solid #fff;
+  box-shadow: 
+    0 10px 25px rgba(79, 172, 254, 0.3),
+    inset 0 5px 15px rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.body-shape::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 25px;
+  height: 25px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+/* Arms */
+.arm {
+  width: 18px;
+  height: 70px;
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  border-radius: 20px;
+  position: absolute;
+  top: 25px;
+  border: 3px solid #fff;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.left-arm {
+  left: -15px;
+  transform-origin: top center;
+}
+
+.right-arm {
+  right: -15px;
+  transform-origin: top center;
+}
+
+/* Particles */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.particle {
+  position: absolute;
+  font-size: 1.5rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.particle-0 { top: 10%; left: 20%; }
+.particle-1 { top: 20%; right: 15%; }
+.particle-2 { top: 50%; left: 10%; }
+.particle-3 { top: 60%; right: 20%; }
+.particle-4 { bottom: 30%; left: 25%; }
+.particle-5 { bottom: 20%; right: 25%; }
+.particle-6 { top: 30%; left: 50%; }
+.particle-7 { bottom: 40%; right: 50%; }
+
+/* Hover Effects */
+.mascot-container:hover .mascot-head {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.mascot-container:hover .expression-overlay {
+  transform: scale(1.1) rotate(5deg);
+  transition: transform 0.3s ease;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mascot-container {
+    width: 250px;
+    height: 350px;
+  }
+
+  .mascot-head {
+    width: 160px;
+    height: 160px;
+  }
+
+  .eyes {
+    width: 80px;
+    top: 50px;
+  }
+
+  .eye {
+    width: 28px;
+    height: 28px;
+  }
+
+  .pupil {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mouth {
+    bottom: 40px;
+  }
+
+  .static-mouth {
+    width: 40px;
+    height: 20px;
+  }
+
+  .speaking-mouth {
+    width: 50px;
+    height: 30px;
+  }
+
+  .expression-overlay {
+    font-size: 2.5rem;
+    top: -25px;
+    right: -25px;
+  }
+
+  .mascot-body {
+    width: 120px;
+    height: 140px;
+  }
+
+  .body-shape {
+    height: 100px;
+  }
+
+  .arm {
+    width: 15px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mascot-container {
+    width: 200px;
+    height: 300px;
+  }
+
+  .mascot-head {
+    width: 140px;
+    height: 140px;
+  }
+
+  .eyes {
+    width: 70px;
+    top: 45px;
+  }
+
+  .eye {
+    width: 25px;
+    height: 25px;
+  }
+
+  .pupil {
+    width: 12px;
+    height: 12px;
+  }
+
+  .expression-overlay {
+    font-size: 2rem;
+    top: -20px;
+    right: -20px;
+  }
+
+  .mascot-body {
+    width: 100px;
+    height: 120px;
+  }
+
+  .arm {
+    width: 12px;
+    height: 50px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .mascot-container,
+  .mascot-head,
+  .pupil,
+  .arm,
+  .thinking-dots span,
+  .wave,
+  .particle {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .mascot-head {
+    border-color: #000;
+  }
+  
+  .eye {
+    border-color: #000;
+  }
+  
+  .static-mouth {
+    border-color: #000;
+  }
+}
