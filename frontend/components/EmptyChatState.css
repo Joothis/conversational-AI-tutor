@@ -1,0 +1,74 @@
+/* Empty State */
+.empty-state {
+  text-align: center;
+  color: white;
+  padding: 3rem 2rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.empty-state h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.empty-state p {
+  margin: 0 0 2rem 0;
+  opacity: 0.8;
+  font-size: 1.1rem;
+}
+
+.conversation-starters {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  text-align: left;
+  max-width: 400px;
+}
+
+.starter-category h5 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.starter-category ul {
+  margin: 0;
+  padding-left: 1rem;
+  list-style: none;
+}
+
+.starter-category li {
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.starter-category li::before {
+  content: "💡";
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.starter-category li:hover {
+  opacity: 1;
+  color: #fff;
+}

@@ -1,0 +1,396 @@
+/* VoiceControls.css */
+.voice-controls {
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+  color: white;
+}
+
+/* Input Mode Toggle */
+.input-mode-toggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.input-mode-toggle button {
+  flex: 1;
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.input-mode-toggle button.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  transform: scale(1.05);
+}
+
+.input-mode-toggle button:hover:not(.active):not(:disabled) {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.input-mode-toggle button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Voice Input Section */
+.voice-input-section {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.mic-button {
+  width: 120px;
+  height: 120px;
+  border: none;
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+  position: relative;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.mic-button:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+}
+
+.mic-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.mic-button.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #ccc;
+}
+
+.mic-button.listening {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  animation: micPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes micPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.mic-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.listening-animation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-ring {
+  position: absolute;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  animation: pulsate 2s ease-out infinite;
+}
+
+.pulse-ring.delay-1 {
+  animation-delay: 0.5s;
+}
+
+.pulse-ring.delay-2 {
+  animation-delay: 1s;
+}
+
+@keyframes pulsate {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Voice Status */
+.voice-status {
+  margin-top: 1rem;
+}
+
+.status-text {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.status-text.listening {
+  color: #4facfe;
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+.status-text.disabled {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.status-text.idle {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes textPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+/* Sound Visualizer */
+.sound-visualizer {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 0.5rem;
+}
+
+.bar {
+  width: 4px;
+  height: 20px;
+  background: #4facfe;
+  border-radius: 2px;
+  animation: soundBars 1s ease-in-out infinite;
+}
+
+.bar:nth-child(1) { animation-delay: 0s; }
+.bar:nth-child(2) { animation-delay: 0.1s; }
+.bar:nth-child(3) { animation-delay: 0.2s; }
+.bar:nth-child(4) { animation-delay: 0.3s; }
+.bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes soundBars {
+  0%, 100% { 
+    height: 8px;
+    opacity: 0.4;
+  }
+  50% { 
+    height: 25px;
+    opacity: 1;
+  }
+}
+
+/* Text Input Section */
+.text-input-section {
+  padding: 1rem 0;
+}
+
+.text-input-form {
+  width: 100%;
+}
+
+.input-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s ease;
+}
+
+.input-container:focus-within {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.input-container textarea {
+  width: 100%;
+  padding: 1rem;
+  padding-bottom: 3rem;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  font-family: inherit;
+  border-radius: 15px;
+  resize: vertical;
+  min-height: 80px;
+  outline: none;
+}
+
+.input-container textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.input-container textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.input-actions {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.character-count {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.send-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+.send-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+}
+
+.send-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.text-status {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Quick Actions */
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  justify-content: center;
+}
+
+.quick-action-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quick-action-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.quick-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tips */
+.interaction-tips {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+.tip-icon {
+  font-size: 1rem;
+  margin-top: 0.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .voice-controls {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .mic-button {
+    width: 100px;
+    height: 100px;
+    font-size: 2rem;
+  }
+
+  .pulse-ring {
+    width: 120px;
+    height: 120px;
+  }
+
+  .quick-actions {
+    gap: 0.3rem;
+  }
+
+  .quick-action-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .input-container textarea {
+    font-size: 0.9rem;
+    min-height: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .voice-controls {
+    margin: 0.5rem;
+    padding: 0.8rem;
+  }
+
+  .input-mode-toggle {
+    margin-bottom: 1rem;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .quick-action-btn {
+    text-align: center;
+  }
+}

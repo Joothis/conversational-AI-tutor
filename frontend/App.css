@@ -1,0 +1,384 @@
+/* Card backgrounds for mascot and chat */
+.mascot-section, .interaction-section {
+  background: rgba(255,255,255,0.15);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.15);
+  padding: 2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+/* Chat bubbles */
+.chat-interface {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+.message-bubble {
+  max-width: 70%;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  font-size: 1.08rem;
+  line-height: 1.5;
+  word-break: break-word;
+  margin-bottom: 0.5rem;
+  position: relative;
+  animation: fadeIn 0.5s;
+}
+.message-bubble.user {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 6px;
+}
+.message-bubble.assistant {
+  background: linear-gradient(135deg, #fff 0%, #f1f1f1 100%);
+  color: #222;
+  align-self: flex-start;
+  border-bottom-left-radius: 6px;
+}
+.message-bubble .emotion-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  display: block;
+  color: #ff6b6b;
+}
+
+/* Mic button animation */
+.mic-btn.listening {
+  background: linear-gradient(135deg, #ff6b6b 0%, #f9d423 100%);
+  box-shadow: 0 0 0 6px rgba(255,107,107,0.15);
+  animation: pulse 1.2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,107,107,0.25); }
+  70% { box-shadow: 0 0 0 12px rgba(255,107,107,0.05); }
+  100% { box-shadow: 0 0 0 0 rgba(255,107,107,0.25); }
+}
+
+
+/* App.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  min-height: 100vh;
+  color: #333;
+  overflow-x: hidden;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.App-header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem 2rem;
+  color: white;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.App-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+}
+
+.mode-toggle {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  padding: 0.25rem;
+  backdrop-filter: blur(10px);
+}
+
+.mode-toggle button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.mode-toggle button.active {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+.mode-toggle button:hover:not(.active) {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Main Content */
+.App-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  gap: 2rem;
+}
+
+.mascot-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  width: 100%;
+}
+
+.interaction-section {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Footer */
+.App-footer {
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(20px);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.App-footer p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Loading States */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Error States */
+.error-message {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.success-message {
+  background: linear-gradient(135deg, #4ecdc4, #44bd32);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(68, 189, 50, 0.3);
+}
+
+/* Connection Status */
+.connection-status {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.connection-status.connected {
+  background: rgba(68, 189, 50, 0.9);
+  color: white;
+}
+
+.connection-status.disconnected {
+  background: rgba(255, 107, 107, 0.9);
+  color: white;
+}
+
+.connection-status.connecting {
+  background: rgba(255, 193, 7, 0.9);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .App-main {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .interaction-section {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .App-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .App-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .mode-toggle button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .App-main {
+    padding: 1rem 0.5rem;
+    gap: 1rem;
+  }
+
+  .mascot-section {
+    min-height: 350px;
+  }
+
+  .App-footer {
+    padding: 1rem;
+  }
+
+  .connection-status {
+    top: 10px;
+    right: 10px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .mode-toggle {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .mode-toggle button {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .mascot-section {
+    min-height: 300px;
+  }
+
+  .App-main {
+    gap: 0.8rem;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+  }
+  
+  .App-header {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  .App-footer {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .App-header h1 {
+    -webkit-text-fill-color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  .mode-toggle button.active {
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .fade-in {
+    animation: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .App-header,
+  .App-footer,
+  .mascot-section,
+  .mode-toggle {
+    display: none;
+  }
+  
+  .chat-interface {
+    box-shadow: none;
+    background: white !important;
+  }
+  
+  .message-bubble {
+    background: #f5f5f5 !important;
+    color: black !important;
+  }
+}
