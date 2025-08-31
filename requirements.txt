@@ -8,3 +8,5 @@ torch
 python-dotenv
 requests
 langchain-community
+openai
+python-multipart

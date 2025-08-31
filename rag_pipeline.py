@@ -77,6 +77,16 @@ def get_qa_chain():
     return qa_chain
 
 
+def get_emotion(answer: str) -> str:
+    """Determines the emotion based on the answer text."""
+    answer_lower = answer.lower()
+    if "i don't know" in answer_lower or "i'm sorry" in answer_lower:
+        return "confused"
+    elif "great question" in answer_lower or "excellent" in answer_lower:
+        return "happy"
+    else:
+        return "explaining"
+
 def process_query(query: str, is_chat: bool = False):
     """
     Processes a query using the QA chain.
@@ -84,12 +94,17 @@ def process_query(query: str, is_chat: bool = False):
     For a single query, it creates a new chain to avoid using past history.
     """
     chain = get_qa_chain()
+    
+    # Set emotion to "thinking" before processing
+    # This can be sent to the frontend to show a thinking animation
+    # For now, we'll just print it
+    print("Current emotion: thinking")
+
     result = chain({"query": query})
     
     answer = result.get("result", "I'm sorry, I couldn't find an answer.")
     
-    # Simple emotion logic
-    emotion = "explaining" if "I don't know" not in answer else "confused"
+    emotion = get_emotion(answer)
     
     return {"text": answer, "emotion": emotion}
 
