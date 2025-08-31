@@ -1,0 +1,7 @@
+vosk
+pyttsx3
+gTTS
+soundfile
+pydub
+librosa
+sentence-transformers

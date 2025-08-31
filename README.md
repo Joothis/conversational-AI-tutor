@@ -1,93 +1,192 @@
+# Conversational AI Tutor
 
-# Conversational AI Tutor (Full Stack)
+A full-stack AI-powered tutoring system featuring speech recognition, natural language processing, and an animated character interface.
 
-This project provides a comprehensive, full-stack foundation for a conversational AI tutor. It includes a RAG-powered backend API and a scaffolded React frontend with pre-configured API communication and placeholder components.
+## Project Outline
 
-## System Architecture
+This project aims to build a conversational AI tutor with the following components:
 
-The system follows this high-level architecture:
+- **RAG-powered Backend**: A backend powered by LangChain/LangGraph and a Vector DB to provide answers to user queries.
+- **Live API-based Chatbot Interface**: A chatbot interface that interacts with the backend through a live API.
+- **Mascot Avatar**: An animated mascot that can:
+    - Listen to user queries through speech recognition (STT).
+    - Speak out the AI's responses using text-to-speech (TTS).
+    - Display animated emotions based on the AI's response.
 
-1.  **Frontend (React)**: A user interacts with a web interface.
-    *   A **Microphone Button** captures user speech.
-    *   The browser's **Web Speech API** (or another STT service) converts speech to text.
-2.  **API Communication**: The frontend sends the transcribed text to the backend via a REST API call.
-3.  **Backend (FastAPI)**: The Python backend receives the query.
-    *   The query hits the `/chat` endpoint, which maintains conversation history.
-    *   A **LangChain RAG pipeline** retrieves relevant information from a **ChromaDB vector store**.
-    *   A language model generates an answer and an associated "emotion."
-    *   The backend returns a `{"text": "...", "emotion": "..."}` JSON response.
-4.  **Frontend (React)**: The frontend receives the response.
-    *   The **Web Speech API** (or another TTS service) speaks the text response aloud.
-    *   A **Mascot** component updates its facial expression based on the `emotion` field and animates while speaking.
+## Tasks & Deliverables
 
----
+### 1. Backend – Conversational RAG API
 
-## How to Run This Project
+- Implement a RAG pipeline using LangChain and a Vector DB.
+- Expose the following REST API endpoints:
+    - `POST /query`: To answer a single query.
+    - `POST /chat`: To handle multi-turn conversations.
+- The API responses should include both the text of the answer and an optional emotion state (e.g., "happy", "thinking", "explaining").
 
-This project has two parts: the **backend** server and the **frontend** application. You will need to run them in two separate terminals.
+### 2. Speech to Text (Listening)
 
-### Part 1: Running the Backend
+- Integrate a speech-to-text (STT) service, such as Google Speech, OpenAI Whisper, or a Hugging Face model.
+- The system will transcribe the user's spoken questions and send them to the backend to retrieve an answer.
 
-**a. Prerequisites:**
-*   Python 3.8+
-*   An OpenAI API key (if using OpenAI models). Set it in the `.env` file as `OPENAI_API_KEY=your_key_here`.
+### 3. Text to Speech (Speaking)
 
-**b. Setup and Run:**
+- Integrate a text-to-speech (TTS) engine, such as Google TTS, ElevenLabs, AWS Polly, or an open-source option like pyttsx3.
+- The mascot will speak out the AI's answer.
+
+### 4. Mascot UI (Frontend)
+
+- Build a simple mascot interface using a 2D or 3D animated character.
+- The mascot will have the following features:
+    - Its mouth will move while speaking (basic animation or lip-sync).
+    - Its facial expression will change based on the emotion field in the AI's response.
+    - A microphone button will allow the user to speak, triggering the STT service, API call, and spoken response.
+- The frontend can be implemented using:
+    - Web technologies like React/Next.js with Web Audio APIs and Canvas/Lottie animations.
+    - Desktop technologies like PyGame, PyQt, or Flutter.
+
+### 5. Live API Calling
+
+- Ensure that the mascot calls the live RAG API instead of using hardcoded responses.
+- The end-to-end flow will be as follows:
+    1. The user speaks to the mascot.
+    2. The STT service transcribes the speech and sends it to the RAG API.
+    3. The API returns a response containing the answer text and an emotion.
+    4. The mascot speaks the answer and animates according to the emotion.
+
+### 6. Submission Requirements
+
+- A GitHub repository containing the backend and frontend code.
+- A demo video showing the user speaking to the mascot and the mascot responding.
+- Slides explaining the architecture of the STT → RAG → TTS → Mascot pipeline.
+
+## System Requirements
+
+- Python 3.8+
+- Node.js and npm
+- Virtual environment capability
+
+## Setup Instructions
+
+### 1. Environment Configuration
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+# Model Configuration
+LLM_MODEL=gpt-3.5-turbo
+
+# API Keys
+OPENAI_API_KEY=your_openai_api_key_here
+GOOGLE_API_KEY=your_google_api_key_here
+ELEVENLABS_API_KEY=your_elevenlabs_api_key_here
+HUGGINGFACE_API_KEY=your_huggingface_api_key_here
+
+# Speech Service Providers
+STT_PROVIDER=openai  # Options: google, openai, huggingface, local
+TTS_PROVIDER=google  # Options: google, elevenlabs, openai, local
+```
+
+### 2. Backend Setup
 
 ```bash
-# 1. Navigate to the project root directory
+# Create and activate virtual environment
+python -m venv .venv
+# Windows:
+.venv\Scripts\activate
+# Unix/MacOS:
+source .venv/bin/activate
 
-# 2. Create a virtual environment and activate it
-python -m venv venv
-# On Windows:
-source venv\Scripts\activate
-# On macOS/Linux:
-source venv/bin/activate
-
-# 3. Install dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# 4. Run the backend server
-# The first time you run this, it will create the vector database.
+# Start the backend server
 uvicorn main:app --reload
 ```
 
-The backend API will now be running at `http://localhost:8000`.
+The backend will be available at `http://localhost:8000`.
 
-### Part 2: Running the Frontend
-
-**a. Prerequisites:**
-*   Node.js and npm
-
-**b. Setup and Run:**
+### 3. Frontend Setup
 
 ```bash
-# 1. Navigate to the frontend directory in a new terminal
+# Navigate to frontend directory
 cd frontend
 
-# 2. Install dependencies
+# Install dependencies
 npm install
 
-# 3. Start the React development server
+# Start the development server
 npm start
 ```
 
-The frontend application will now be running and will open automatically in your browser at `http://localhost:3000`.
+The frontend will be available at `http://localhost:3000`.
 
----
+## Project Structure
 
-## Developing the Frontend
+```
+conversational-AI-tutor/
+├── frontend/                # React frontend application
+│   ├── src/
+│   │   ├── services/       # API integration
+│   │   ├── components/     # React components
+│   │   └── ...
+├── knowledge_base/         # RAG source documents
+├── chroma_db/             # Vector database storage
+├── main.py               # FastAPI backend server
+├── rag_pipeline.py      # RAG implementation
+├── speech_services.py           # Speech service integrations
+└── requirements.txt    # Python dependencies
+```
 
-The React frontend has been scaffolded to make development as easy as possible.
+## API Endpoints
 
-*   **API Communication**: All API calls are handled in `frontend/src/services/api.js`. You do not need to modify this to get started.
+- `POST /chat`: Main conversation endpoint
+- `POST /stt`: Speech-to-text conversion
+- `POST /tts`: Text-to-speech conversion
+- `POST /reset`: Reset conversation history
 
-*   **Main Logic**: The main application flow is in `frontend/src/App.js`. This file contains the logic for handling user input, managing conversation state, and coordinating the STT/TTS flow.
+## Configuration Options
 
-*   **Your Task**: Your primary focus will be on replacing the placeholder components and functions:
+### Speech-to-Text Providers
 
-    1.  **Mascot Component**: In `App.js`, find the `Mascot` component. Replace the simple `<div>` with your 2D/3D animated character. You can use libraries like [Lottie](https://lottiefiles.com/) for animations. The `emotion` and `speaking` props are already passed to the component for you to use.
+- OpenAI (Whisper)
+- Google Cloud Speech-to-Text
+- Hugging Face Models
+- Local Processing
 
-    2.  **STT Integration**: In `App.js`, find the `handleListen` function. The code is currently commented out. Uncomment it to use the browser's built-in Web Speech API for speech recognition. You can replace this with any other STT service.
+### Text-to-Speech Providers
 
-    3.  **TTS Integration**: In `App.js`, find the `handleSpeak` function. Uncomment the example code to use the browser's built-in Web Speech API for text-to-speech. You can replace this with a more advanced service like ElevenLabs or Google TTS for higher-quality voices.
+- Google Cloud Text-to-Speech
+- ElevenLabs
+- OpenAI TTS
+- Local TTS
+
+## Development Guide
+
+The React frontend has been scaffolded with all necessary components:
+
+- **API Communication**: Handled in `frontend/src/services/api.js`
+- **Main Application Logic**: Found in `frontend/src/App.js`
+- **Key Components**:
+  - Mascot Component: Animated character with emotion states
+  - Voice Controls: STT and TTS integration
+  - Chat Interface: Message history and input handling
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- OpenAI for GPT models
+- LangChain for RAG implementation
+- ChromaDB for vector storage
+- FastAPI for the backend framework
+- React for the frontend framework

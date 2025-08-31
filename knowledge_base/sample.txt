@@ -1,0 +1,16 @@
+
+Welcome to the AI Tutor System!
+
+This is a sample knowledge base document. You can add your own documents here.
+
+Topics covered:
+- Python Programming
+- Machine Learning
+- Data Science
+- Natural Language Processing
+
+Python is a high-level programming language known for its simplicity and readability.
+Machine Learning is a subset of AI that enables systems to learn from data.
+Data Science combines statistics, programming, and domain expertise to extract insights from data.
+Natural Language Processing helps computers understand and generate human language.
+            
